@@ -26,6 +26,10 @@
 	#define CPUINFO_ARCH_ARM 1
 #endif
 
+#if defined(__mips__) 
+	#define CPUINFO_ARCH_MIPS 1
+#endif
+
 #if defined(__aarch64__) || defined(_M_ARM64)
 	#define CPUINFO_ARCH_ARM64 1
 #endif
@@ -62,6 +66,10 @@
 
 #ifndef CPUINFO_ARCH_ARM64
 	#define CPUINFO_ARCH_ARM64 0
+#endif
+
+#ifndef CPUINFO_ARCH_MIPS
+	#define CPUINFO_ARCH_MIPS 0
 #endif
 
 #ifndef CPUINFO_ARCH_PPC64
@@ -534,6 +542,9 @@ enum cpuinfo_uarch {
 
 	/** HiSilicon TaiShan v110 (Huawei Kunpeng 920 series processors). */
 	cpuinfo_uarch_taishan_v110 = 0x00C00100,
+
+	/** MIPS R6. */
+	cpuinfo_uarch_r6 = 0x00E00100,
 };
 
 struct cpuinfo_processor {
