@@ -1875,6 +1875,50 @@ static inline bool cpuinfo_has_arm_sve2(void) {
 	#endif
 }
 
+#if CPUINFO_ARCH_MIPS
+/* This structure is not a part of stable API. Use cpuinfo_has_mips_* functions instead. */
+	struct cpuinfo_mips_isa {
+        bool r;
+        bool msa;
+        bool dsp;
+        bool dsp2;
+        bool dsp3;
+    };
+		extern struct cpuinfo_mips_isa cpuinfo_isa;
+#endif
+
+static inline bool cpuinfo_has_mips_msa(void) {
+    #if CPUINFO_ARCH_MIPS
+        return cpuinfo_isa.msa;
+    #else
+        return false;
+    #endif
+}
+
+static inline bool cpuinfo_has_mips_dsp(void) {
+    #if CPUINFO_ARCH_MIPS
+        return cpuinfo_isa.dsp;
+    #else
+        return false;
+    #endif
+}
+
+static inline bool cpuinfo_has_mips_dsp2(void) {
+    #if CPUINFO_ARCH_MIPS
+        return cpuinfo_isa.dsp2;
+    #else
+        return false;
+    #endif
+}
+
+static inline bool cpuinfo_has_mips_dsp3(void) {
+    #if CPUINFO_ARCH_MIPS
+        return cpuinfo_isa.dsp3;
+    #else
+        return false;
+    #endif
+}
+
 const struct cpuinfo_processor* CPUINFO_ABI cpuinfo_get_processors(void);
 const struct cpuinfo_core* CPUINFO_ABI cpuinfo_get_cores(void);
 const struct cpuinfo_cluster* CPUINFO_ABI cpuinfo_get_clusters(void);
